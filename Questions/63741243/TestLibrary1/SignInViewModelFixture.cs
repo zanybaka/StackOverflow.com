@@ -83,7 +83,7 @@ namespace TestLibrary1
 
             // Then
             _userService.Verify();
-            _pageService.Verify(x => x.PushAsync(It.Is<HomePage>(x => x.User == user)));
+            _pageService.Verify(x => x.PushAsync(It.Is<HomePage>(y => y.User == user)));
             _pageService.VerifyNoOtherCalls();
             vm.PasswordEntry.Should().BeEmpty();
         }
