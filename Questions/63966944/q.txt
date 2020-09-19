@@ -1,0 +1,7 @@
+I've a list of categories in a single cell and I'd like to split them by categories into different cell in Excel. For example, the below list is a A1, I'd like to split category "Pork" into B1, "Noodles" into C1 and etc.. Please kindly assist. Thank you.
+
+Pork Order 1 2 x Pork Soft Bones - 200gr
+
+Noodles Order 1 1 x Chee Cheong Fun (4 Rolls) 1 x Mee Tai Mak (500g)
+
+Vegetable Order 1 1 x Broccoli - 2 pcs 1 x Huai Shan - 400g - 500g
