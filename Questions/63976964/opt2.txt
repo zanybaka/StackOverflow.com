@@ -1,0 +1,7 @@
+Regex  pattern = new Regex(@"^((?<path>.*?)\\){0,1}(?<digits>[0-9]{1,6})\.txt$", RegexOptions.IgnoreCase);
+            string path    = Directory.GetCurrentDirectory();
+
+            string[] files = Directory.GetFiles(path, "*.txt")
+                .Select(x => pattern.Match(x))
+                .Where(x => x.Success)
+                .Select(x => x.Groups["digits"].Value).ToArray();
