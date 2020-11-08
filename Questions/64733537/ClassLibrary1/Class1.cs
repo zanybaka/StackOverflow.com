@@ -45,5 +45,42 @@ namespace ClassLibrary1
             // Then
             Assert.AreEqual(expected, tracer.Items[item], $"Unexpected result for {item} and {ratio}. Expected {expected} but was {tracer.Items[item]}.");
         }
+
+        [Test]
+        public void Test2()
+        {
+            // Given
+            var tracerMock = new Mock<ITracer>(MockBehavior.Strict);
+            tracerMock.Setup(y => y.Add(Tracer.Item.x, 12.00));
+            tracerMock.Setup(y => y.Add(Tracer.Item.y, 13.00));
+            tracerMock.Setup(y => y.Add(Tracer.Item.z, 14.00));
+            var worker = new Worker(tracerMock.Object);
+
+            // When
+            worker.Do();
+
+            // Then
+            tracerMock.VerifyAll();
+
+            // or remove VerifyAll and check it exactly
+            tracerMock.Verify(tracer => tracer.Add(Tracer.Item.x, 12));
+            tracerMock.Verify(tracer => tracer.Add(Tracer.Item.y, 13));
+            tracerMock.Verify(tracer => tracer.Add(Tracer.Item.z, 14));
+        }
+
+        private class Worker
+        {
+            private readonly ITracer _tracer;
+
+            public Worker(ITracer tracer)
+            {
+                _tracer = tracer;
+            }
+
+            public void Do()
+            {
+                _tracer.Add(Tracer.Item.x, 12);
+            }
+        }
     }
 }
